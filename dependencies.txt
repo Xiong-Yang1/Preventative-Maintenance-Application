@@ -1,0 +1,7 @@
+# Project dependencies
+ttkbootstrap # for the main theme
+tkinter # for some widgets
+openpyxl # reading excel files
+pandas  # excel wrangling
+pyinstaller # export the project
+datetime # date and time library
