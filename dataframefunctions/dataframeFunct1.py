@@ -87,14 +87,4 @@ def mysecondFunction(myDate, myStaff, progressBar, toggleButtonStatus):
                             )    
    
     toast.show_toast()
-
-def myThirdFunction(birthDay):
-    currentDate = dt.date.today()
-    birthDate = dt.datetime.strptime(birthDay, "%m/%d/%Y").date()
-    age_in_years = (currentDate - birthDate).days
-    currentAge = age_in_years / 365.25
-    currentAge = float(currentAge)
-    #print(f'The current date is {currentDate}')
-    #print(f'Your selected birthday is {birthDate}')
-    print(f'Your current age: {currentAge} years old')
-    return currentAge
+    

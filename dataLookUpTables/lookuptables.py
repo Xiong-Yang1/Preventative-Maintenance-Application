@@ -2,7 +2,7 @@ import ttkbootstrap as tb
 import tkinter as tk
 import openpyxl
 import pandas as pd
-import os
+import os, sys
 
 from notebookconfigurations.createnotebook import clear_all_notebooks
 # Declare file path to the lookup table.
@@ -55,14 +55,20 @@ def PM_QUERY(assay,instrument):
     # add the instrument name into the path too.
     assay = assay.upper()
     instrument = instrument.upper()
-    pm_query_path = fr"\\mfad.mfroot.org\rchapp\Tox\Dept\ITTS Files\Projects\PM Project\PM Application\{assay}_{instrument}_PM_FORM_QUERY.xlsx"
-    
+    # If the program is running as a script
+    #project_directory = fr"{os.getcwd()}\QUERY_FILES"
+    #print(f'Main directory: {project_directory}')
+    #pm_query_path = fr"{project_directory}\{assay}_{instrument}_PM_FORM_QUERY.xlsx"
+
+    pm_query_path = fr"\\mfad.mfroot.org\rchapp\Tox\Dept\ITTS Files\Projects\PM Project\PM Application\QUERY_FILES\{assay}_{instrument}_PM_FORM_QUERY.xlsx"
+    #print(f"File for assay found {pm_query_path}")
     # Check if the file exists
     if not os.path.exists(pm_query_path):
         print(f"File for assay '{assay}' not found, defaulting to the base file path.")
-        pm_query_path = r"\\mfad.mfroot.org\rchapp\Tox\Dept\ITTS Files\Projects\PM Project\PM Application\PM_FORM_QUERY.xlsx"
+        pm_query_path = r"\\mfad.mfroot.org\rchapp\Tox\Dept\ITTS Files\Projects\PM Project\PM Application\QUERY_FILES\PM_FORM_QUERY.xlsx"
     #else:
-        #pm_query_path = r"\\mfad.mfroot.org\rchapp\Tox\Dept\ITTS Files\Projects\PM Project\PM Application\PM_FORM_QUERY.xlsx"
+        #pm_query_path = r"\\mfad.mfroot.org\rchapp\Tox\Dept\ITTS Files\Projects\PM Project\PM Application\QUERY_FILES\PM_FORM_QUERY.xlsx"
+
     # load the workbook.
     my_pm_table = openpyxl.load_workbook(pm_query_path,read_only=True)
     # access the first page for creating the daily PM form
