@@ -1,25 +1,19 @@
 import tkinter as tk
 import ttkbootstrap as tb
-import pandas as pd
 import datetime as dt
-import os
-
 import dataframefunctions.dataframeFunct1 as df1
-import notebookconfigurations.notebookstyle as nbStyle
-import interactivefunctions.progressbar as prog
-import interactivefunctions.meterwidgets as wig
-import dataValueChecks.dataValidations as dv
 
 from dataLookUpTables.lookuptables import get_Assay_and_Instrument
 from dataLookUpTables.lookuptables import update_instruments
 from notebookconfigurations.createnotebook import assay_to_createnotebook
 from notebookconfigurations.createnotebook import clear_all_notebooks
+#from dataValueChecks.login_module import login_window
 from canvas.canvasframe import my_canvas
 from ttkbootstrap.constants import *
 
 # The functions will be kept in separate modules for organization and modularity.
 
-
+#user_name = login_window()
 
 # Create the main window
 root = tb.Window(themename="superhero")
@@ -62,7 +56,6 @@ assay_drop_down_label.grid(row= 2, column = 6, pady=5, padx=20, sticky="e")
 assay_var = tb.StringVar()
 assay_drop_down_combo = tb.Combobox(frame1, text= assay_var, state="readonly", width=20)
 assay_drop_down_combo.grid(row = 2, column = 7, pady=5, padx=20, sticky = "w")
-#assay_drop_down_combo.bind("<<ComboboxSelected>>", update_form_with_new_ranges)
 assay_drop_down_combo.bind(  "<<ComboboxSelected>>", 
                             lambda event: (assay_to_createnotebook(event,instrument_var, 
                                                                     assay_drop_down_combo, 
@@ -94,26 +87,17 @@ style_default_notebook = tb.Style()
 # Configure the tab style with padding and font
 style_default_notebook.configure("TNotebook.Tab", 
                                   padding=[10, 5], 
-                                  font=("Arial", 10))
+                                  font=("Arial", 10)
+                                  )
 # Apply the changes for the selected tab
 style_default_notebook.map("TNotebook.Tab",
                            background=[("selected", "purple")],  # Purple for the selected tab
                            foreground=[("selected", "black")],   # Black text on the selected tab
-                           font=[("selected", ("Arial", 14, "bold"))])  # Bold font for the selected tab
+                           font=[("selected", ("Arial", 14, "bold"))]
+                           )  # Bold font for the selected tab
 # create the notebook object, assign a theme and apply it via the grid method
 entry_notebook = tb.Notebook(frame1, bootstyle = "darkly")
 entry_notebook.grid(row = 3, column = 0, columnspan = 10, pady = 20, padx = 20, sticky="ew")
-
-# Function to create notebook tabs.
-""" createNoteBook(root,entry_notebook, 
-                progress_bar, 
-                task_type, ui_type, 
-                task_name, 
-                operator_symbol, 
-                cutoffValue, 
-                margin_value, 
-                unit_value,
-                optional_value) """
 
 # Creating first button.
 entry_Btn = tb.Button(frame1, 
@@ -135,26 +119,17 @@ entry_Btn.grid(row = 4, column=0,pady=20, padx=20, sticky = "nsew")
 entry_Btn = tb.Button(frame1, 
                       text = "Clear", 
                       bootstyle = "danger, outline", 
-                      command = lambda: (clear_all_notebooks(root))
+                      command = lambda: (clear_all_notebooks(root)
+                                        )
 )
 entry_Btn.grid(row = 4, column=1, pady=20, padx=20, sticky = "nsew")
 
 # Create Notebook for PM entries
-
 PM_log = tb.Notebook(frame1, bootstyle = "primary")
 PM_log.grid(row = 5, column = 0, columnspan = 10, pady = 10, padx=5, sticky="ew")
 
 # create the PM log table. Will update this function to generate and update the notebook upon PM entry.
 # as of 3/26/25, the PM log only displays the reference ranges to generate the form.
-""" createPMLog(PM_log, 
-            task_type, 
-            ui_type, 
-            task_name, 
-            operator_symbol, 
-            cutoffValue, 
-            margin_value, 
-            unit_value,
-            optional_value) """
-
 
 root.mainloop()
+

@@ -118,6 +118,7 @@ def createNoteBook(root,frame1,entry_notebook, progress_bar,task_type, ui_type, 
 
     # Dictionaries to store widget variables
     chk_vars = {}
+    chk_btn = {}
     manual_vars = {}
     meter_vars = {}
     toggle_var = {}
